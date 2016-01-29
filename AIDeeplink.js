@@ -90,14 +90,35 @@ AIDeeplink = function () {
         return 'desktop';
     };
 
-    openNativeStore = function (ts) {
-        return function () {
-            var link = getStoreURL();
-            var wait = settings.delay;
-            if (typeof link === "string" && (Date.now() - ts) < wait) {
-                window.location.href = link;
+    openNativeStore = function () {
+        if (!isMobile()) {
+            return false;
+        }
+
+        var URI = getStoreURL();
+
+        if (isIOS()) {
+            setTimeout(function () {
+                window.location = URI;
+            }, settings.delay);
+        }
+        else if (isAndroid()) {
+            if (!isSupport(notSupportAndroidBrowserUA)) {
+                return false;
+            }
+            else {
+                var iframe = document.createElement('iframe');
+                iframe.onload = function () {
+                    clearTimeout(timeout);
+                    iframe.parentNode.removeChild(iframe);
+                    window.location.href = URI;
+                };
+                iframe.src = URI;
+                iframe.setAttribute('style', 'display:none;');
+                document.body.appendChild(iframe);
             }
         }
+        return true;
     };
 
     openNativeApp = function (uri) {
@@ -163,7 +184,6 @@ AIDeeplink = function () {
         }
         return true;
     };
-
 
     return {
         setup: setup,

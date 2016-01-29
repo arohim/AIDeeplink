@@ -9,28 +9,28 @@
                 {
                     iOS: {
                         appName: "App name",
-                        appId: "xxxxxxx"
+                        appId: "appId"
                     },
                     android: {
                         appName: "App name",
-                        appId: "xxx.xxxxxxx.xxx"
+                        appId: "app.package.name"
                     },
                     timeout: 2000, // timeout after try to open your application.
                     delay: 2000
                 }
         )
         function openNativeStore() {
-            AIDeeplink.openNativeStore(5);
+            AIDeeplink.openNativeStore();
         }
         function openNativeApp() {
-            AIDeeplink.openNativeApp("uri://helloworld?param1=value1");
+            AIDeeplink.openNativeApp("intent://schema");
         }
         function openNativeAppWithCallback() {
-            AIDeeplink.openNativeAppWithCallback("", function (msg) {
+            AIDeeplink.openNativeAppWithCallback("intent://schema", function (msg) {
                 alert("callback " + msg);
             });
         }
-        function getStoreURL() {
+        function getStoreURLSTR() {
             alert(AIDeeplink.getStoreURL());
         }
         function getPlatform() {
@@ -45,7 +45,7 @@
 
 <h1><a href="javascript:openNativeAppWithCallback()">Open native app with callback</a></h1><br/>
 
-<h1><a href="javascript:getStoreURL()">get store URL</a></h1><br/>
+<h1><a href="javascript:getStoreURLSTR()">get store URL</a></h1><br/>
 
 <h1><a href="javascript:getPlatform()">get platform</a></h1><br/>
 </body>
