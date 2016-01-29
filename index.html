@@ -5,12 +5,48 @@
     <title>Title</title>
     <script type="text/javascript" src="AIDeeplink.js"></script>
     <script type="text/javascript">
-        function openApp(){
-
+        AIDeeplink.setup(
+                {
+                    iOS: {
+                        appName: "Sanook app",
+                        appId: "430564118"
+                    },
+                    android: {
+                        appName: "Sanook app",
+                        appId: "m.sanook.com"
+                    },
+                    timeout: 2000, // timeout after try to open your application.
+                    delay: 2000
+                }
+        )
+        function openNativeStore() {
+            AIDeeplink.openNativeStore(5);
+        }
+        function openNativeApp() {
+            AIDeeplink.openNativeApp("uri://helloworld?param1=value1");
+        }
+        function openNativeAppWithCallback() {
+            AIDeeplink.openNativeAppWithCallback("", function (msg) {
+                alert("callback " + msg);
+            });
+        }
+        function getStoreURL() {
+            alert(AIDeeplink.getStoreURL());
+        }
+        function getPlatform() {
+            alert(AIDeeplink.platform());
         }
     </script>
 </head>
 <body>
-    <h1><a href="javascript:openApp()" >Open app</a></h1>
+<h1><a href="javascript:openNativeStore()">Open native app store</a></h1><br/>
+
+<h1><a href="javascript:openNativeApp()">Open native app</a></h1><br/>
+
+<h1><a href="javascript:openNativeAppWithCallback()">Open native app with callback</a></h1><br/>
+
+<h1><a href="javascript:getStoreURL()">get store URL</a></h1><br/>
+
+<h1><a href="javascript:getPlatform()">get platform</a></h1><br/>
 </body>
 </html>
