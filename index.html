@@ -9,14 +9,16 @@
                 {
                     iOS: {
                         appName: "App name",
-                        appId: "appId"
+                        appId: "appId",
+                        storeUrl: "your store url"
                     },
                     android: {
                         appName: "App name",
-                        appId: "app.package.name"
+                        appId: "app.package.name",
+                        storeUrl: "your store url"
                     },
-                    timeout: 2000, // timeout after try to open your application.
-                    delay: 2000
+                    timeout: 2000, // (milli seconds) timeout after try to open your application.
+                    delay: 2000 // (milli seconds) delay time before try to launch your mobile aplication.
                 }
         )
         function openNativeStore() {
