@@ -40,7 +40,7 @@ AIDeeplink.setup(
 AIDeeplink.openNativeStore();
 ```
 
-### Open native app store
+### Open native app
 ```js
 AIDeeplink.openNativeApp("intent://schema");
 ```
